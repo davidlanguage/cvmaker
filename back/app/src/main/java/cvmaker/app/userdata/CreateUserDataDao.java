@@ -1,4 +1,6 @@
 package cvmaker.app.userdata;
 
-public class CreateUserDataDao {
+interface CreateUserDataDao {
+
+    void create(final UserData userData);
 }
