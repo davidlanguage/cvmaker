@@ -13,9 +13,10 @@ class UserDataMapperTest {
     }
 
     @Test
-    void should_returnAllFieldsNull_when_userdataEntityIsNull(){
+    void should_returnNullForNullableFields_when_userdataEntityContainsNullFields(){
         //given
-        final UserDataEntity userDataEntity = UserDataEntity.builder().build();
+        final String email = "testemail@test.com";
+        final UserDataEntity userDataEntity = UserDataEntity.builder().email(email).build();
 
         //when
         final UserData returnedUserData = userdataMapper.map(userDataEntity);
@@ -24,7 +25,7 @@ class UserDataMapperTest {
         assertThat(returnedUserData.getId()).isNull();
         assertThat(returnedUserData.getName()).isNull();
         assertThat(returnedUserData.getLastname()).isNull();
-        assertThat(returnedUserData.getEmail()).isNull();
+        assertThat(returnedUserData.getEmail()).isNotNull();
         assertThat(returnedUserData.getPassword()).isNull();
     }
 
