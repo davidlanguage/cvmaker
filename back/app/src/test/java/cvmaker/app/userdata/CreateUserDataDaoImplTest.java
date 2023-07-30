@@ -2,13 +2,19 @@ package cvmaker.app.userdata;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.mockito.BDDMockito.given;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration()
 class CreateUserDataDaoImplTest {
 
-    private final UserdataMapper mapper = new UserdataMapper();
+    @Mock
+    private UserdataMapper mapper;
     @Mock
     private UserDataRepository repository;
 
@@ -48,8 +54,7 @@ class CreateUserDataDaoImplTest {
                 .build();
         given(mapper.mapToEntity(userData)).willReturn(userDataEntity);
         //when
-
-        //then
         dao.create(userData);
+        //then
     }
 }
