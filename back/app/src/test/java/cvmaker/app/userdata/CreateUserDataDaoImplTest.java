@@ -1,13 +1,16 @@
 package cvmaker.app.userdata;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.BDDMockito.given;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration()
@@ -27,7 +30,7 @@ class CreateUserDataDaoImplTest {
     }
 
     @Test
-    void should_createNewEntity_when_dataUserIsProvided(){
+    void should_createNewEntity_when_dataUserIsProvided() throws EmailHasWrongPatternError {
         //given
         final Long id = 7L;
         final String name = "Cristiano";
@@ -56,5 +59,46 @@ class CreateUserDataDaoImplTest {
         //when
         dao.create(userData);
         //then
+    }
+    @Test
+    void should_throwWrongEmailPattern_when_emailProvidedIsWrong(){
+        //given
+        final String email = "wrongemail";
+
+        final UserData userData = UserData
+                .builder()
+                .email(email)
+                .build();
+
+        //when
+        final EmailHasWrongPatternError exception = Assertions.assertThrows(EmailHasWrongPatternError.class, ()-> {
+            dao.create(userData);
+        });
+
+        final String expectedMessage = "The email provided is wrongly formatted";
+        final String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
+    @Test
+    void should_createEmail_when_emailProvidedHasCorrectFormatting() throws EmailHasWrongPatternError {
+        //given
+        final String email = "test@test.com";
+
+        final UserData userData = UserData
+                .builder()
+                .email(email)
+                .build();
+
+        //when
+        final UserData returnedUserData = dao.create(userData);
+
+        //then
+
+        assertThat(userData.getEmail()).isEqualTo(returnedUserData.getEmail());
+
+
     }
 }

@@ -2,5 +2,5 @@ package cvmaker.app.userdata;
 
 interface CreateUserDataDao {
 
-    void create(final UserData userData);
+    UserData create(final UserData userData) throws EmailHasWrongPatternError;
 }
