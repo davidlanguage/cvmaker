@@ -1,18 +1,24 @@
 package cvmaker.app.userdata;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-@AllArgsConstructor
 class CreateUserDataDaoImpl implements CreateUserDataDao {
 
     private UserdataMapper userdataMapper;
 
     private UserDataRepository userDataRepository;
+
+    @Autowired
+    public CreateUserDataDaoImpl(UserdataMapper userdataMapper, UserDataRepository userDataRepository){
+        this.userdataMapper = userdataMapper;
+        this.userDataRepository = userDataRepository;
+    }
 
     private static final String WRONG_PATTERN_MESSAGE = "The email provided is wrongly formatted";
 
