@@ -1,6 +1,6 @@
 package cvmaker.app.userdata;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 
@@ -71,14 +71,16 @@ class CreateUserDataDaoImplTest {
                 .build();
 
         //when
-        final EmailHasWrongPatternError exception = Assertions.assertThrows(EmailHasWrongPatternError.class, ()-> {
+        /*final EmailHasWrongPatternError exception = Assertions.assertThrows(EmailHasWrongPatternError.class, ()-> {
             dao.create(userData);
         });
+        */
+        final boolean createdUserData = dao.create(userData);
 
-        final String expectedMessage = "The email provided is wrongly formatted";
-        final String actualMessage = exception.getMessage();
+        //final String expectedMessage = "The email provided is wrongly formatted";
+        //final String actualMessage = exception.getMessage();
 
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertFalse(createdUserData);
 
     }
 
@@ -93,11 +95,10 @@ class CreateUserDataDaoImplTest {
                 .build();
 
         //when
-        final UserData returnedUserData = dao.create(userData);
+        final boolean createdUserData = dao.create(userData);
 
         //then
-
-        assertThat(userData.getEmail()).isEqualTo(returnedUserData.getEmail());
+        assertTrue(createdUserData);
 
 
     }

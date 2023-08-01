@@ -1,6 +1,5 @@
 package cvmaker.app.userdata;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,28 +9,27 @@ import java.util.regex.Pattern;
 @Component
 class CreateUserDataDaoImpl implements CreateUserDataDao {
 
-    private UserdataMapper userdataMapper;
+    private final UserdataMapper userdataMapper;
+    private final UserDataRepository userDataRepository;
 
-    private UserDataRepository userDataRepository;
+    private static final String WRONG_PATTERN_MESSAGE = "The email provided is wrongly formatted";
 
     @Autowired
-    public CreateUserDataDaoImpl(UserdataMapper userdataMapper, UserDataRepository userDataRepository){
+    public CreateUserDataDaoImpl(final UserdataMapper userdataMapper, final UserDataRepository userDataRepository){
         this.userdataMapper = userdataMapper;
         this.userDataRepository = userDataRepository;
     }
 
-    private static final String WRONG_PATTERN_MESSAGE = "The email provided is wrongly formatted";
-
     @Override
-    public UserData create(final UserData userData) throws EmailHasWrongPatternError {
+    public boolean create(final UserData userData){
 
         if (validateEmail(userData.getEmail())){
             final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
             userDataRepository.save(userDataEntity);
-            return userData;
+            return true;
         }
         else {
-            throw new EmailHasWrongPatternError(WRONG_PATTERN_MESSAGE);
+            return false;
         }
     }
 
