@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -85,13 +84,15 @@ class CreateUserDataDaoImplTest {
     }
 
     @Test
-    void should_createEmail_when_emailProvidedHasCorrectFormatting() throws EmailHasWrongPatternError {
+    void should_createUserData_when_emailAndPasswordProvidedHaveCorrectFormatting(){
         //given
         final String email = "test@test.com";
+        final String password = "Password12345!";
 
         final UserData userData = UserData
                 .builder()
                 .email(email)
+                .password(password)
                 .build();
 
         //when
@@ -100,6 +101,45 @@ class CreateUserDataDaoImplTest {
         //then
         assertTrue(createdUserData);
 
+    }
+
+    @Test
+    void should_notCreateUserData_when_emailProvidedDoesntHaveCorrectFormatting(){
+        //given
+        final String email = "wrongformat";
+        final String password = "Password12345!";
+
+        final UserData userData = UserData
+                .builder()
+                .email(email)
+                .password(password)
+                .build();
+
+        //when
+        final boolean createdUserData = dao.create(userData);
+
+        //then
+        assertFalse(createdUserData);
+
+    }
+
+    @Test
+    void should_notCreateUserData_when_passwordProvidedDoesntHaveCorrectFormatting(){
+        //given
+        final String email = "test@test.com";
+        final String password = "wrongformat!";
+
+        final UserData userData = UserData
+                .builder()
+                .email(email)
+                .password(password)
+                .build();
+
+        //when
+        final boolean createdUserData = dao.create(userData);
+
+        //then
+        assertTrue(createdUserData);
 
     }
 }

@@ -3,8 +3,8 @@ package cvmaker.app.userdata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import static cvmaker.app.utils.Validator.validateEmail;
+import static cvmaker.app.utils.Validator.validatePassword;
 
 @Component
 class CreateUserDataDaoImpl implements CreateUserDataDao {
@@ -23,7 +23,7 @@ class CreateUserDataDaoImpl implements CreateUserDataDao {
     @Override
     public boolean create(final UserData userData){
 
-        if (validateEmail(userData.getEmail())){
+        if (validateEmail(userData.getEmail()) && validatePassword(userData.getPassword())){
             final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
             userDataRepository.save(userDataEntity);
             return true;
@@ -33,13 +33,5 @@ class CreateUserDataDaoImpl implements CreateUserDataDao {
         }
     }
 
-    private boolean validateEmail(final String email){
 
-        final Pattern emailPattern = Pattern.compile("^(.+)@(.+)$");
-
-        final Matcher matcher = emailPattern.matcher(email);
-
-        return matcher.find();
-
-    }
 }
