@@ -29,13 +29,14 @@ class CreateUserDataDaoImplTest {
     }
 
     @Test
-    void should_createNewEntity_when_dataUserIsProvided() throws EmailHasWrongPatternError {
+    void should_createNewEntity_when_dataUserIsProvided(){
+
         //given
         final Long id = 7L;
         final String name = "Cristiano";
         final String lastname = "Ronaldo";
         final String email = "test@test.com";
-        final String password = "secret1";
+        final String password = "Password12345!";
 
         final UserData userData = UserData
                 .builder()
@@ -55,12 +56,17 @@ class CreateUserDataDaoImplTest {
                 .password(password)
                 .build();
         given(mapper.mapToEntity(userData)).willReturn(userDataEntity);
+
         //when
-        dao.create(userData);
+        final boolean userCreated = dao.create(userData);
+
         //then
+        assertTrue(userCreated);
     }
+
     @Test
     void should_throwWrongEmailPattern_when_emailProvidedIsWrong(){
+
         //given
         final String email = "wrongemail";
 
@@ -70,15 +76,9 @@ class CreateUserDataDaoImplTest {
                 .build();
 
         //when
-        /*final EmailHasWrongPatternError exception = Assertions.assertThrows(EmailHasWrongPatternError.class, ()-> {
-            dao.create(userData);
-        });
-        */
         final boolean createdUserData = dao.create(userData);
 
-        //final String expectedMessage = "The email provided is wrongly formatted";
-        //final String actualMessage = exception.getMessage();
-
+        //then
         assertFalse(createdUserData);
 
     }
@@ -139,7 +139,7 @@ class CreateUserDataDaoImplTest {
         final boolean createdUserData = dao.create(userData);
 
         //then
-        assertTrue(createdUserData);
+        assertFalse(createdUserData);
 
     }
 }

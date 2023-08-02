@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static cvmaker.app.utils.Validator.validateEmail;
-import static cvmaker.app.utils.Validator.validatePassword;
+import static cvmaker.app.utils.Validator.isValidPassword;
 
 @Component
 class CreateUserDataDaoImpl implements CreateUserDataDao {
@@ -23,7 +23,7 @@ class CreateUserDataDaoImpl implements CreateUserDataDao {
     @Override
     public boolean create(final UserData userData){
 
-        if (validateEmail(userData.getEmail()) && validatePassword(userData.getPassword())){
+        if (validateEmail(userData.getEmail()) && isValidPassword(userData.getPassword())){
             final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
             userDataRepository.save(userDataEntity);
             return true;
