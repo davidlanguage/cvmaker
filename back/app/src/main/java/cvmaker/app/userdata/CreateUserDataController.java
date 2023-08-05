@@ -19,7 +19,7 @@ public class CreateUserDataController {
     @PostMapping("/create")
     public ResponseEntity<UserData> createUserData(@RequestBody UserData userData){
        final boolean userCreated = createUserDataDao.create(userData);
-       return userCreated?new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       return userCreated? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }
