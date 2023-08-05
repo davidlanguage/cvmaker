@@ -8,7 +8,7 @@ public class UserdataMapper {
     UserData map(final UserDataEntity userdataEntity){
         return UserData.builder()
                 .id(userdataEntity.getId())
-                .name(userdataEntity.getName())
+                .firstname(userdataEntity.getFirstname())
                 .lastname(userdataEntity.getLastname())
                 .email(userdataEntity.getEmail())
                 .password(userdataEntity.getPassword())
@@ -17,7 +17,7 @@ public class UserdataMapper {
     UserDataEntity mapToEntity(final UserData userdata){
         return UserDataEntity.builder()
                 .id(userdata.getId())
-                .name(userdata.getName())
+                .firstname(userdata.getFirstname())
                 .lastname(userdata.getLastname())
                 .email(userdata.getEmail())
                 .password(userdata.getPassword())

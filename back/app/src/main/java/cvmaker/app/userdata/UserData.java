@@ -12,7 +12,7 @@ public class UserData {
 
     private Long id;
 
-    private String name;
+    private String firstname;
 
     private String lastname;
 

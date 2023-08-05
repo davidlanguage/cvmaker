@@ -28,7 +28,7 @@ class UserDataMapperTest {
 
         //then
         assertThat(returnedUserData.getId()).isNull();
-        assertThat(returnedUserData.getName()).isNull();
+        assertThat(returnedUserData.getFirstname()).isNull();
         assertThat(returnedUserData.getLastname()).isNull();
         assertThat(returnedUserData.getEmail()).isNotNull();
         assertThat(returnedUserData.getPassword()).isNull();
@@ -47,7 +47,7 @@ class UserDataMapperTest {
                 UserDataEntity
                         .builder()
                         .id(id)
-                        .name(name)
+                        .firstname(name)
                         .lastname(lastname)
                         .email(email)
                         .password(password)
@@ -57,7 +57,7 @@ class UserDataMapperTest {
                 UserData
                         .builder()
                         .id(id)
-                        .name(name)
+                        .firstname(name)
                         .lastname(lastname)
                         .email(email)
                         .password(password)
@@ -83,7 +83,7 @@ class UserDataMapperTest {
                 UserDataEntity
                         .builder()
                         .id(id)
-                        .name(name)
+                        .firstname(name)
                         .lastname(lastname)
                         .email(email)
                         .password(password)
@@ -93,7 +93,7 @@ class UserDataMapperTest {
                 UserData
                         .builder()
                         .id(id)
-                        .name(name)
+                        .firstname(name)
                         .lastname(lastname)
                         .email(email)
                         .password(password)

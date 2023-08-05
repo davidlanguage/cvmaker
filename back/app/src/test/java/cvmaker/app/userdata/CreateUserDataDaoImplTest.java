@@ -41,7 +41,7 @@ class CreateUserDataDaoImplTest {
         final UserData userData = UserData
                 .builder()
                 .id(id)
-                .name(name)
+                .firstname(name)
                 .lastname(lastname)
                 .email(email)
                 .password(password)
@@ -50,7 +50,7 @@ class CreateUserDataDaoImplTest {
         final UserDataEntity userDataEntity = UserDataEntity
                 .builder()
                 .id(id)
-                .name(name)
+                .firstname(name)
                 .lastname(lastname)
                 .email(email)
                 .password(password)
