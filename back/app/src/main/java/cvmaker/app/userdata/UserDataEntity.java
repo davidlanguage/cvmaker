@@ -5,16 +5,18 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "userdata")
+@Table(name = "userdata", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class UserDataEntity implements UserDetails {
 
     @Id
@@ -25,42 +27,41 @@ public class UserDataEntity implements UserDetails {
 
     private String lastname;
 
-    @NonNull
+    @Column(nullable = false)
     @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
+    @Basic
     @Size(min = 5, max=100)
-    private String email;
+    private String username;
 
     private String password;
 
-    //private Role role;
+    private String country;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
+        return List.of(new SimpleGrantedAuthority((role.name())));
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

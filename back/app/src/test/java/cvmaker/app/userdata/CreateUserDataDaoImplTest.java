@@ -43,7 +43,7 @@ class CreateUserDataDaoImplTest {
                 .id(id)
                 .firstname(name)
                 .lastname(lastname)
-                .email(email)
+                .username(email)
                 .password(password)
                 .build();
 
@@ -52,7 +52,7 @@ class CreateUserDataDaoImplTest {
                 .id(id)
                 .firstname(name)
                 .lastname(lastname)
-                .email(email)
+                .username(email)
                 .password(password)
                 .build();
         given(mapper.mapToEntity(userData)).willReturn(userDataEntity);
@@ -72,7 +72,7 @@ class CreateUserDataDaoImplTest {
 
         final UserData userData = UserData
                 .builder()
-                .email(email)
+                .username(email)
                 .build();
 
         //when
@@ -91,7 +91,7 @@ class CreateUserDataDaoImplTest {
 
         final UserData userData = UserData
                 .builder()
-                .email(email)
+                .username(email)
                 .password(password)
                 .build();
 
@@ -111,7 +111,7 @@ class CreateUserDataDaoImplTest {
 
         final UserData userData = UserData
                 .builder()
-                .email(email)
+                .username(email)
                 .password(password)
                 .build();
 
@@ -131,7 +131,7 @@ class CreateUserDataDaoImplTest {
 
         final UserData userData = UserData
                 .builder()
-                .email(email)
+                .username(email)
                 .password(password)
                 .build();
 

@@ -5,21 +5,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserdataMapper {
 
-    UserData map(final UserDataEntity userdataEntity){
+    public UserData map(final UserDataEntity userdataEntity){
         return UserData.builder()
                 .id(userdataEntity.getId())
                 .firstname(userdataEntity.getFirstname())
                 .lastname(userdataEntity.getLastname())
-                .email(userdataEntity.getEmail())
+                .username(userdataEntity.getUsername())
                 .password(userdataEntity.getPassword())
                 .build();
     }
-    UserDataEntity mapToEntity(final UserData userdata){
+    public UserDataEntity mapToEntity(final UserData userdata){
         return UserDataEntity.builder()
                 .id(userdata.getId())
                 .firstname(userdata.getFirstname())
                 .lastname(userdata.getLastname())
-                .email(userdata.getEmail())
+                .username(userdata.getUsername())
                 .password(userdata.getPassword())
                 .build();
     }

@@ -21,7 +21,7 @@ class UserDataMapperTest {
     void should_returnNullForNullableFields_when_userdataEntityContainsNullFields(){
         //given
         final String email = "testemail@test.com";
-        final UserDataEntity userDataEntity = UserDataEntity.builder().email(email).build();
+        final UserDataEntity userDataEntity = UserDataEntity.builder().username(email).build();
 
         //when
         final UserData returnedUserData = userdataMapper.map(userDataEntity);
@@ -30,7 +30,7 @@ class UserDataMapperTest {
         assertThat(returnedUserData.getId()).isNull();
         assertThat(returnedUserData.getFirstname()).isNull();
         assertThat(returnedUserData.getLastname()).isNull();
-        assertThat(returnedUserData.getEmail()).isNotNull();
+        assertThat(returnedUserData.getUsername()).isNotNull();
         assertThat(returnedUserData.getPassword()).isNull();
     }
 
@@ -49,7 +49,7 @@ class UserDataMapperTest {
                         .id(id)
                         .firstname(name)
                         .lastname(lastname)
-                        .email(email)
+                        .username(email)
                         .password(password)
                         .build();
 
@@ -59,7 +59,7 @@ class UserDataMapperTest {
                         .id(id)
                         .firstname(name)
                         .lastname(lastname)
-                        .email(email)
+                        .username(email)
                         .password(password)
                         .build();
 
@@ -85,7 +85,7 @@ class UserDataMapperTest {
                         .id(id)
                         .firstname(name)
                         .lastname(lastname)
-                        .email(email)
+                        .username(email)
                         .password(password)
                         .build();
 
@@ -95,7 +95,7 @@ class UserDataMapperTest {
                         .id(id)
                         .firstname(name)
                         .lastname(lastname)
-                        .email(email)
+                        .username(email)
                         .password(password)
                         .build();
 

@@ -1,29 +1,25 @@
 package cvmaker.app.userdata;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import static cvmaker.app.utils.Validator.validateEmail;
 import static cvmaker.app.utils.Validator.isValidPassword;
 
 @Component
-class CreateUserDataDaoImpl implements CreateUserDataDao {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CreateUserDataDaoImpl implements CreateUserDataDao {
 
-    private final UserdataMapper userdataMapper;
-    private final UserDataRepository userDataRepository;
+    private UserdataMapper userdataMapper;
 
-    private static final String WRONG_PATTERN_MESSAGE = "The email provided is wrongly formatted";
-
-    @Autowired
-    public CreateUserDataDaoImpl(final UserdataMapper userdataMapper, final UserDataRepository userDataRepository){
-        this.userdataMapper = userdataMapper;
-        this.userDataRepository = userDataRepository;
-    }
+    private UserDataRepository userDataRepository;
 
     @Override
     public boolean create(final UserData userData){
 
-        if (validateEmail(userData.getEmail()) && isValidPassword(userData.getPassword())){
+        if (validateEmail(userData.getUsername()) && isValidPassword(userData.getPassword())){
             final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
             userDataRepository.save(userDataEntity);
             return true;
