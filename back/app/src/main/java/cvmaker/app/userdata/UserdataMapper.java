@@ -12,6 +12,8 @@ public class UserdataMapper {
                 .lastname(userdataEntity.getLastname())
                 .username(userdataEntity.getUsername())
                 .password(userdataEntity.getPassword())
+                .country(userdataEntity.getCountry())
+                .role(userdataEntity.getRole())
                 .build();
     }
     public UserDataEntity mapToEntity(final UserData userdata){
@@ -21,6 +23,8 @@ public class UserdataMapper {
                 .lastname(userdata.getLastname())
                 .username(userdata.getUsername())
                 .password(userdata.getPassword())
+                .country(userdata.getCountry())
+                .role(userdata.getRole())
                 .build();
     }
 }

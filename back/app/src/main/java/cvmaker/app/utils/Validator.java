@@ -7,6 +7,10 @@ public final class Validator {
 
     private Validator(){}
 
+    public static boolean validateAll(final String email, final String password){
+        return validateEmail(email) && validatePassword(password);
+    }
+
     public static boolean validateEmail(final String email){
 
         if (email == null){
@@ -29,20 +33,20 @@ public final class Validator {
      * It contains at least one special character which includes !@#$%&*()-+=^.
      * It doesn’t contain any white space.
      * */
-    public static boolean isValidPassword(final String password){
+    public static boolean validatePassword(final String pwd){
 
-        if (password == null){
+        if (pwd == null){
             return false;
         }
 
         final String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
-                + "(?=.*[!@#$%&*()-+=^])"
+                + "(?=.*[!@#$%&*()+=^-])"
                 + "(?=\\S+$).{8,20}$";
 
         final Pattern pattern = Pattern.compile(regex);
 
-        final Matcher matcher = pattern.matcher(password);
+        final Matcher matcher = pattern.matcher(pwd);
 
         return matcher.matches();
     }

@@ -67,10 +67,10 @@ class ValidatorTest {
     void should_validatePassword_when_passwordPatternIsCorrect(){
 
         //given
-        final String password = "Password123@";
+        final String password = "Qwerty1234-";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertTrue(validatePassword);
@@ -78,10 +78,10 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordIsNull(){
+    void should_notValidatePassword_when_passwordIsNull(){
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(null);
+        final boolean validatePassword = Validator.validatePassword(null);
 
         //then
         assertFalse(validatePassword);
@@ -89,13 +89,13 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordHasFewerThanEightCharacters(){
+    void should_notValidatePassword_when_passwordHasFewerThanEightCharacters(){
 
         //given
         final String password = "Pass1!";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
@@ -103,13 +103,13 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordHasMoreThanOrEqualToTwentyCharacters(){
+    void should_notValidatePassword_when_passwordHasMoreThanOrEqualToTwentyCharacters(){
 
         //given
         final String password = "12345678901234567aA!";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertTrue(validatePassword);
@@ -117,13 +117,13 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordDoesNotContainASingleDigit(){
+    void should_notValidatePassword_when_passwordDoesNotContainASingleDigit(){
 
         //given
         final String password = "PasswordGGGG@";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
@@ -131,13 +131,13 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordDoesNotContainASingleUpperCase(){
+    void should_notValidatePassword_when_passwordDoesNotContainASingleUpperCase(){
 
         //given
         final String password = "password12345@";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
@@ -145,13 +145,13 @@ class ValidatorTest {
     }
 
     @Test
-    void should_noValidatePassword_when_passwordDoesNotContainASingleLowerCase(){
+    void should_notValidatePassword_when_passwordDoesNotContainASingleLowerCase(){
 
         //given
         final String password = "PASSWORD12345@";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
@@ -165,7 +165,7 @@ class ValidatorTest {
         final String password = "Password1234567890";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
@@ -179,11 +179,25 @@ class ValidatorTest {
         final String password = "     Password12345!";
 
         //when
-        final boolean validatePassword = Validator.isValidPassword(password);
+        final boolean validatePassword = Validator.validatePassword(password);
 
         //then
         assertFalse(validatePassword);
 
+    }
+
+    @Test
+    void should_validateAll_when_passwordAndEmailAreCorrect(){
+
+        //given
+        final String password = "Password12345!";
+        final String email = "testing3@testing.com";
+
+        //when
+        final boolean validatePasswordAndEmail = Validator.validateAll(email, password);
+
+        //then
+        assertTrue(validatePasswordAndEmail);
     }
 
 }

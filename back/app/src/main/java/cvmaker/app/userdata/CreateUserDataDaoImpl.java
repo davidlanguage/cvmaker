@@ -1,14 +1,11 @@
 package cvmaker.app.userdata;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import static cvmaker.app.utils.Validator.validateEmail;
-import static cvmaker.app.utils.Validator.isValidPassword;
+import static cvmaker.app.utils.Validator.*;
 
 @Component
-@NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserDataDaoImpl implements CreateUserDataDao {
 
@@ -18,15 +15,10 @@ public class CreateUserDataDaoImpl implements CreateUserDataDao {
 
     @Override
     public boolean create(final UserData userData){
-
-        if (validateEmail(userData.getUsername()) && isValidPassword(userData.getPassword())){
             final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
             userDataRepository.save(userDataEntity);
             return true;
-        }
-        else {
-            return false;
-        }
+
     }
 
 
