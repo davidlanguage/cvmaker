@@ -1,6 +1,5 @@
 package cvmaker.app.config;
 
-import cvmaker.app.userdata.GetUserDataEntityByUsernameDAO;
 import cvmaker.app.userdata.UserDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

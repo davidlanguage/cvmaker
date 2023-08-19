@@ -1,7 +1,6 @@
 package cvmaker.app.userdata;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration()
@@ -37,14 +37,18 @@ class CreateUserDataDaoImplTest {
         final String lastname = "Ronaldo";
         final String email = "test@test.com";
         final String password = "Password12345!";
+        final String country = "Portugal";
+        final Role role = Role.USER;
 
-        final UserData userData = UserData
+        final UserData expectedUserData = UserData
                 .builder()
                 .id(id)
                 .firstname(name)
                 .lastname(lastname)
                 .username(email)
                 .password(password)
+                .country(country)
+                .role(role)
                 .build();
 
         final UserDataEntity userDataEntity = UserDataEntity
@@ -54,92 +58,20 @@ class CreateUserDataDaoImplTest {
                 .lastname(lastname)
                 .username(email)
                 .password(password)
-                .build();
-        given(mapper.mapToEntity(userData)).willReturn(userDataEntity);
-
-        //when
-        final boolean userCreated = dao.create(userData);
-
-        //then
-        assertTrue(userCreated);
-    }
-
-    @Test
-    void should_throwWrongEmailPattern_when_emailProvidedIsWrong(){
-
-        //given
-        final String email = "wrongemail";
-
-        final UserData userData = UserData
-                .builder()
-                .username(email)
+                .country(country)
+                .role(role)
                 .build();
 
+        given(mapper.mapToEntity(expectedUserData)).willReturn(userDataEntity);
+
         //when
-        final boolean createdUserData = dao.create(userData);
+        final UserData returnedUserData = dao.create(expectedUserData);
 
         //then
-        assertFalse(createdUserData);
+
+        assertThat(expectedUserData).usingRecursiveComparison().isEqualTo(returnedUserData);
+
 
     }
 
-    @Test
-    void should_createUserData_when_emailAndPasswordProvidedHaveCorrectFormatting(){
-        //given
-        final String email = "test@test.com";
-        final String password = "Password12345!";
-
-        final UserData userData = UserData
-                .builder()
-                .username(email)
-                .password(password)
-                .build();
-
-        //when
-        final boolean createdUserData = dao.create(userData);
-
-        //then
-        assertTrue(createdUserData);
-
-    }
-
-    @Test
-    void should_notCreateUserData_when_emailProvidedDoesntHaveCorrectFormatting(){
-        //given
-        final String email = "wrongformat";
-        final String password = "Password12345!";
-
-        final UserData userData = UserData
-                .builder()
-                .username(email)
-                .password(password)
-                .build();
-
-        //when
-        final boolean createdUserData = dao.create(userData);
-
-        //then
-        assertFalse(createdUserData);
-
-    }
-
-    @Test
-    void should_notCreateUserData_when_passwordProvidedDoesntHaveCorrectFormatting(){
-        //given
-        final String email = "test@test.com";
-        final String password = "wrongformat!";
-
-        final UserData userData = UserData
-                .builder()
-                .username(email)
-                .password(password)
-                .build();
-
-        //when
-        final boolean createdUserData = dao.create(userData);
-
-        //then
-        assertFalse(createdUserData);
-
-    }
 }

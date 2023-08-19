@@ -18,20 +18,16 @@ class UserDataMapperTest {
     }
 
     @Test
-    void should_returnNullForNullableFields_when_userdataEntityContainsNullFields(){
+    void should_returnNullForAllFields_when_userdataEntityContainsNullFields(){
         //given
-        final String email = "testemail@test.com";
-        final UserDataEntity userDataEntity = UserDataEntity.builder().username(email).build();
+        final UserDataEntity userDataEntity = UserDataEntity.builder().build();
 
         //when
         final UserData returnedUserData = userdataMapper.map(userDataEntity);
 
         //then
-        assertThat(returnedUserData.getId()).isNull();
-        assertThat(returnedUserData.getFirstname()).isNull();
-        assertThat(returnedUserData.getLastname()).isNull();
-        assertThat(returnedUserData.getUsername()).isNotNull();
-        assertThat(returnedUserData.getPassword()).isNull();
+        assertThat(returnedUserData).hasAllNullFieldsOrProperties();
+
     }
 
     @Test
@@ -42,6 +38,8 @@ class UserDataMapperTest {
         final String lastname = "Lastname";
         final String email = "email";
         final String password = "password";
+        final String country = "Spain";
+        final Role role = Role.USER;
 
         final UserDataEntity userDataEntity =
                 UserDataEntity
@@ -51,6 +49,8 @@ class UserDataMapperTest {
                         .lastname(lastname)
                         .username(email)
                         .password(password)
+                        .country(country)
+                        .role(role)
                         .build();
 
         final UserData expectedUserData =
@@ -61,6 +61,8 @@ class UserDataMapperTest {
                         .lastname(lastname)
                         .username(email)
                         .password(password)
+                        .country(country)
+                        .role(role)
                         .build();
 
         //when
@@ -78,6 +80,8 @@ class UserDataMapperTest {
         final String lastname = "Lastname";
         final String email = "email";
         final String password = "password";
+        final String country = "country";
+        final Role role = Role.USER;
 
         final UserDataEntity expectedUserDataEntity =
                 UserDataEntity
@@ -87,6 +91,8 @@ class UserDataMapperTest {
                         .lastname(lastname)
                         .username(email)
                         .password(password)
+                        .country(country)
+                        .role(role)
                         .build();
 
         final UserData userData =
@@ -97,6 +103,8 @@ class UserDataMapperTest {
                         .lastname(lastname)
                         .username(email)
                         .password(password)
+                        .country(country)
+                        .role(role)
                         .build();
 
         //when
