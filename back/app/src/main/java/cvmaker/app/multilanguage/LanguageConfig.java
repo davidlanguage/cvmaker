@@ -11,7 +11,7 @@ public class LanguageConfig {
     }
     public static final List<Locale> LOCALES = Arrays.asList(
             new Locale("en"),
-            new Locale("de"),
-            new Locale("es")
+            new Locale("es"),
+            new Locale("de")
     );
 }

@@ -19,8 +19,8 @@ public class HomePageTextProviderController {
 
 
     @GetMapping
-    public String greeting(final HttpServletRequest request){
-        return messageSource.getMessage("greeting",
-                null, myLocaleResolver.resolveLocale(request));
+    public String button(final HttpServletRequest request){
+        //TODO implement
+        return "";
     }
 }

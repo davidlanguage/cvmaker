@@ -80,6 +80,7 @@ class GetUserDataEntityByUsernameDAOImplTest {
     void should_returnNullValues_when_usernameEmpty(){
         //given
         final String email = "";
+        final String fieldToIgnoreForNullValue = "username";
 
         final UserDataEntity expectedUserDataEntity = UserDataEntity
                 .builder()
@@ -92,7 +93,7 @@ class GetUserDataEntityByUsernameDAOImplTest {
                 .findByUsername(Objects.requireNonNull(expectedUserDataEntity).getUsername());
 
         //then
-        assertThat(expectedUserDataEntity).hasAllNullFieldsOrPropertiesExcept("username");
+        assertThat(expectedUserDataEntity).hasAllNullFieldsOrPropertiesExcept(fieldToIgnoreForNullValue);
         assertThat(expectedUserDataEntity.getUsername()).isEmpty();
     }
 

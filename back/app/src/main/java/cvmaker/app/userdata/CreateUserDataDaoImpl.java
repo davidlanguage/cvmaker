@@ -12,9 +12,9 @@ public class CreateUserDataDaoImpl implements CreateUserDataDao {
     private UserDataRepository userDataRepository;
 
     @Override
-    public UserData create(final UserData userData){
-            final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
+    public UserData create(final UserDataEntity userDataEntity){
             userDataRepository.save(userDataEntity);
+            final UserData userData = userdataMapper.map(userDataEntity);
             return userData;
     }
 

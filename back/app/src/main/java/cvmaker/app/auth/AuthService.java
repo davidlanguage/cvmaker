@@ -42,19 +42,9 @@ public class AuthService {
                 .role(Role.USER)
                 .build();
 
-        final UserData userData = UserData
-                .builder()
-                .username(userDataEntity.getUsername())
-                .password(userDataEntity.getPassword())
-                .firstname(userDataEntity.getFirstname())
-                .lastname(userDataEntity.getLastname())
-                .country(userDataEntity.getCountry())
-                .role(userDataEntity.getRole())
-                .build();
-
         if (validateAll(request.getUsername(), request.getPassword())){
 
-            createUserDataDao.create(userData);
+            createUserDataDao.create(userDataEntity);
 
             return AuthResponse
                     .builder()
