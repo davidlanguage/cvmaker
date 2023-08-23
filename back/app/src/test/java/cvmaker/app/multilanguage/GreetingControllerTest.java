@@ -19,16 +19,18 @@ class GreetingControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private static final String URL_TEMPLATE = "/greeting";
+
     @Test
     void should_getOkay_when_greetingUrlIsProvided() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     void should_getAStringValue_when_greetingUrlIsProvided() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
                         .content()
@@ -37,7 +39,7 @@ class GreetingControllerTest {
 
     @Test
     void should_getEnglishText_when_languageIsNotSpecified() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
                         .content()
@@ -46,7 +48,7 @@ class GreetingControllerTest {
 
     @Test
     void should_getEnglishText_when_languageSpecifiedIsEnglish() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                         .locale(LOCALES.get(0))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
@@ -56,7 +58,7 @@ class GreetingControllerTest {
 
     @Test
     void should_getSpanishText_when_languageSpecifiedIsSpanish() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                         .locale(LOCALES.get(0))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
@@ -66,7 +68,7 @@ class GreetingControllerTest {
 
     @Test
     void should_getGermanText_when_languageSpecifiedIsGerman() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
                         .locale(LOCALES.get(0))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
