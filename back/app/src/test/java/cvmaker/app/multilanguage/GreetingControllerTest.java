@@ -11,8 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.MessageSource;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @WebMvcTest(controllers = GreetingController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
@@ -28,7 +26,7 @@ class GreetingControllerTest {
     private MyLocaleResolver myLocaleResolver;
 
     @Test
-    public void test(){
+    void test(){
 
     }
 

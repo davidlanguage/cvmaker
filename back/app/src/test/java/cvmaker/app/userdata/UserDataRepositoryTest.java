@@ -23,7 +23,6 @@ class UserDataRepositoryTest {
 
     @Test
     void should_findByUsername_when_usernameProvided(){
-
         //given
         final String email = "mytesting@mytesting.com";
         final UserDataEntity expectedUserDataEntity = UserDataEntity
@@ -51,6 +50,7 @@ class UserDataRepositoryTest {
         //given
         final String notSuchElementExceptionMessage = "No value present";
         final String fakeEmail = "fake_email";
+
         //when
         final Throwable exception = assertThrows(NoSuchElementException.class,
                 ()-> repository.findByUsername(fakeEmail).orElseThrow());

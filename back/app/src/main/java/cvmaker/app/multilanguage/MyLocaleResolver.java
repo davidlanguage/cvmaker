@@ -27,6 +27,6 @@ public class MyLocaleResolver implements LocaleResolver {
 
     @Override
     public void setLocale(final HttpServletRequest request, final HttpServletResponse response, final Locale locale) {
-
+        //for now it is not necessary creating this method, but its implementation is required
     }
 }

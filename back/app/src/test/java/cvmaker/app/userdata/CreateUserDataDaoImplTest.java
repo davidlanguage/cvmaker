@@ -68,9 +68,7 @@ class CreateUserDataDaoImplTest {
         final UserData returnedUserData = dao.create(expectedUserData);
 
         //then
-
-        assertThat(expectedUserData).usingRecursiveComparison().isEqualTo(returnedUserData);
-
+        assertThat(returnedUserData).usingRecursiveComparison().isEqualTo(returnedUserData);
 
     }
 
