@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class CreateUserDataDaoImpl implements CreateUserDataDao {
 
-    private UserdataMapper userdataMapper;
+    private final UserdataMapper userdataMapper;
 
-    private UserDataRepository userDataRepository;
+    private final UserDataRepository userDataRepository;
 
     @Override
     public UserData create(final UserDataEntity userDataEntity){

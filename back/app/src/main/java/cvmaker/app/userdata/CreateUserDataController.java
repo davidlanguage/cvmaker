@@ -20,7 +20,7 @@ public class CreateUserDataController {
         this.userdataMapper = userdataMapper;
     }
     @PostMapping("/create")
-    public ResponseEntity<UserData> createUserData(@RequestBody UserData userData){
+    public ResponseEntity<UserData> createUserData(@RequestBody final UserData userData){
         final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
        createUserDataDao.create(userDataEntity);
        return new ResponseEntity<>(HttpStatus.OK);

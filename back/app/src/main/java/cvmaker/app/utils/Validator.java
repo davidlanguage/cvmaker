@@ -31,7 +31,7 @@ public final class Validator {
      * It contains at least one upper case alphabet.
      * It contains at least one lower case alphabet.
      * It contains at least one special character which includes !@#$%&*()-+=^.
-     * It doesn’t contain any white space.
+     * It does not contain any white space.
      * */
     public static boolean validatePassword(final String pwd){
 

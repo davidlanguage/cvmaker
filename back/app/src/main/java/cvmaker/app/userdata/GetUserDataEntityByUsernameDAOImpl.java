@@ -2,6 +2,7 @@ package cvmaker.app.userdata;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -17,7 +18,7 @@ public class GetUserDataEntityByUsernameDAOImpl implements GetUserDataEntityByUs
     public UserDataEntity findByUsername(final String email) {
 
         if (!StringUtils.hasText(email)){
-            return UserDataEntity.builder().username("").build();
+            return UserDataEntity.builder().username(Strings.EMPTY).build();
         }
 
         return userDataRepository
