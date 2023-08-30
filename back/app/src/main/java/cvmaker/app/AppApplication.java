@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class AppApplication {
 
+	private static final String MESSAGE = "Thank you for using my app";
+
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}
 
 	@Bean
 	CommandLineRunner commandLineRunner(){
-		return args -> {
-			System.out.println("Thank you for using my app");
-		};
+		return args -> System.out.println(MESSAGE);
 	}
 
 }

@@ -15,7 +15,7 @@ import static cvmaker.app.utils.Validator.validateAll;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserDataRepository userDataRepository;
+    private final GetUserDataEntityByUsernameDAO getUserDataEntityByUsernameDAO;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -24,8 +24,8 @@ public class AuthService {
     public AuthResponse login(final LoginRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getUsername(), request.getPassword()));
-        final UserDetails user = userDataRepository.findByUsername(
-                request.getUsername()).orElseThrow();
+        final UserDetails user = getUserDataEntityByUsernameDAO.findByUsername(
+                request.getUsername());
         final String token = jwtService.getToken(user);
 
         return AuthResponse.builder().token(token).build();
