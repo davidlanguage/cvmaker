@@ -10,8 +10,8 @@ public class LanguageConfig {
         throw new IllegalStateException("Utility class");
     }
     public static final List<Locale> LOCALES = Arrays.asList(
-            new Locale("en"),
-            new Locale("es"),
-            new Locale("de")
+            new Locale(Languages.ENGLISH.getLanguage()),
+            new Locale(Languages.SPANISH.getLanguage()),
+            new Locale(Languages.GERMAN.getLanguage())
     );
 }

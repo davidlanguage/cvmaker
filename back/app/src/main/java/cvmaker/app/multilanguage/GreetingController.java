@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class GreetingController {
 
-
     private MessageSource messageSource;
 
     private MyLocaleResolver myLocaleResolver;

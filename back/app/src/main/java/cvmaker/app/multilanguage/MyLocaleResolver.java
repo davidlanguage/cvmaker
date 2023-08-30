@@ -9,11 +9,14 @@ import java.util.Locale;
 
 @Configuration
 public class MyLocaleResolver implements LocaleResolver {
+
+    private static final String DEFAULT_LANGUAGE = "en";
+
     @Override
     public Locale resolveLocale(final HttpServletRequest request) {
         final String language = request.getHeader("Accept-language");
         if (language == null || language.isEmpty()){
-            return Locale.forLanguageTag("en");
+            return Locale.forLanguageTag(DEFAULT_LANGUAGE);
         }
 
         final Locale locale = Locale.forLanguageTag(language);
@@ -22,7 +25,7 @@ public class MyLocaleResolver implements LocaleResolver {
             return locale;
         }
 
-        return Locale.forLanguageTag("en");
+        return Locale.forLanguageTag(DEFAULT_LANGUAGE);
     }
 
     @Override
