@@ -2,7 +2,8 @@ $main-background-color: #f0f0f0;
 
 .wrapper{
   display: flex; /* Use flexbox to center content */
-  justify-content: center; /* Center horizontally */
+  justify-content: flex-start;
+  flex-direction: column;
   align-items: flex-start; /* Center vertically */
   height: 100vh; /* Make the div take the full viewport height */
   background-color: $main-background-color; /* Set a background color */

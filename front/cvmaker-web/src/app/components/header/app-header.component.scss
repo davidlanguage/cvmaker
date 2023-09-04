@@ -1,0 +1,30 @@
+$navbar-background-color: #333333;
+$navbar-color: #ffffff;
+
+.navbar{
+  background-color: $navbar-background-color;
+  color: $navbar-color;
+  width: 100vw;
+  padding:1.4rem;
+  box-sizing: border-box;
+}
+
+nav{
+
+  ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; // Center the list horizontally
+  }
+
+  li{
+    margin: 0 20px; // Add spacing between navigation items
+  }
+
+  a{
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+  }
+}
