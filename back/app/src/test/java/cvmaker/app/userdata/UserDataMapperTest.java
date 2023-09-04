@@ -73,7 +73,7 @@ class UserDataMapperTest {
     }
 
     @Test
-    void should_map_when_DataEntity(){
+    void should_mapToEntity_when_userData(){
         //given
         final Long id = 1L;
         final String name = "Name";
