@@ -1,0 +1,17 @@
+.center-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+div{
+
+  p{
+    width: 80vw;
+    text-align: justify;
+    justify-content: center;
+  }
+
+}
