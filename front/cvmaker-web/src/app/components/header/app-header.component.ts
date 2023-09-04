@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent {
-
+  //TODO: create component for hamburguer menu by clicking on the language icon
 }
