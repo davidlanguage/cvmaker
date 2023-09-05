@@ -5,7 +5,9 @@ import java.util.regex.Pattern;
 
 public final class Validator {
 
-    private Validator(){}
+    private Validator(){
+        throw new IllegalStateException("Utility class");
+    }
 
     public static boolean validateAll(final String email, final String password){
         return validateEmail(email) && validatePassword(password);

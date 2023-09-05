@@ -14,7 +14,9 @@ public class MyLocaleResolver implements LocaleResolver {
 
     @Override
     public Locale resolveLocale(final HttpServletRequest request) {
+
         final String language = request.getHeader("Accept-language");
+
         if (language == null || language.isEmpty()){
             return Locale.forLanguageTag(DEFAULT_LANGUAGE);
         }
