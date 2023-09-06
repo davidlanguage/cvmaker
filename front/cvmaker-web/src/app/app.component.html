@@ -1,5 +1,9 @@
 <div class="wrapper">
   <app-header></app-header>
-  <app-center></app-center>
+  <app-center [title]="landingPageInfo.title" [firstParagraph]="landingPageInfo.firstParagraph"
+  [secondParagraph]="landingPageInfo.secondParagraph"
+  [language]="petitionLanguage"
+  ></app-center>
   <app-footer></app-footer>
+  <button (click)="change()">sdadasdasd</button>
 </div>

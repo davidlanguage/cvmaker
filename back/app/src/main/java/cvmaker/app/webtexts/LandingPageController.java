@@ -30,4 +30,10 @@ public class LandingPageController {
         return messageSource.getMessage("firstParagraph",
                 null, myLocaleResolver.resolveLocale(request));
     }
+
+    @GetMapping("/secondparagraph")
+    public String secondParagraph(final HttpServletRequest request){
+        return messageSource.getMessage("secondParagraph",
+                null, myLocaleResolver.resolveLocale(request));
+    }
 }

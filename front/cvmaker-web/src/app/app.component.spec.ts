@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have as title 'cvmaker-web'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('cvmaker-web');
+    expect(app.pageTitle).toEqual('cvmaker-web');
   });
 
   it('should render title', () => {

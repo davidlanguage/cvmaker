@@ -24,6 +24,10 @@ class LandingPageControllerTest {
 
     private static final String FIRST_PARAGRAPH = "/firstparagraph";
 
+    private static final String SECOND_PARAGRAPH = "/secondparagraph";
+
+    /* Title */
+
     @Test
     void should_getEnglishMessage_when_noLanguageIsSpecifiedForTitle() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+TITLE)
@@ -65,6 +69,8 @@ class LandingPageControllerTest {
 
     }
 
+    /* First Paragraph */
+
     @Test
     void should_getEnglishMessage_when_noLanguageIsSpecifiedForFirstParagraph() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+FIRST_PARAGRAPH)
@@ -104,5 +110,48 @@ class LandingPageControllerTest {
                         .string("Das ist der esrte Absatz der Landingpage"));
 
     }
+
+    /* Second Paragraph */
+
+    @Test
+    void should_getEnglishMessage_when_noLanguageIsSpecifiedForSecondParagraph() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+SECOND_PARAGRAPH)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
+                        .content()
+                        .string("This is the second paragraph of the landing page"));
+    }
+
+    @Test
+    void should_getEnglishMessage_when_englishLanguageIsSpecifiedSecondParagraph() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+SECOND_PARAGRAPH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .locale(LOCALES.get(0)))
+                .andExpect(MockMvcResultMatchers
+                        .content()
+                        .string("This is the second paragraph of the landing page"));
+    }
+
+    @Test
+    void should_getSpanishMessage_when_spanishLanguageIsSpecifiedSecondParagraph() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+SECOND_PARAGRAPH)
+                        .locale(LOCALES.get(1))
+                        .header("Content-Type", "application/json;charset=UTF-8"))
+                .andExpect(MockMvcResultMatchers
+                        .content()
+                        .string("Este es el segundo párrafo de la landing page"));
+
+    }
+
+    @Test
+    void should_getGermanMessage_when_germanLanguageIsSpecifiedForSecondParagraph() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE+SECOND_PARAGRAPH)
+                        .locale(LOCALES.get(2)))
+                .andExpect(MockMvcResultMatchers
+                        .content()
+                        .string("Das ist der zweite Absatz der Landingpage"));
+
+    }
+
 
 }
