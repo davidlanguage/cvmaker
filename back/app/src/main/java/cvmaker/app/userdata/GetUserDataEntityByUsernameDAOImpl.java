@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class GetUserDataEntityByUsernameDAOImpl implements GetUserDataEntityByUsernameDAO {
+class GetUserDataEntityByUsernameDAOImpl implements GetUserDataEntityByUsernameDAO {
 
     private UserDataRepository userDataRepository;
 

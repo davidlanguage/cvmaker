@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CreateUserDataDaoImpl implements CreateUserDataDao {
+class CreateUserDataDaoImpl implements CreateUserDataDao {
 
     private final UserdataMapper userdataMapper;
 

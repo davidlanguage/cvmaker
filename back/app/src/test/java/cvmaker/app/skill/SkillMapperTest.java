@@ -14,7 +14,6 @@ class SkillMapperTest {
 
     private SkillMapper skillMapper;
     private Long id;
-
     private String skillName;
 
 
@@ -22,7 +21,7 @@ class SkillMapperTest {
     void setUp(){
         skillMapper = new SkillMapper();
         id = 76L;
-        skillName = "Godly creating";
+        skillName = "Godly Creation";
     }
 
     @Test

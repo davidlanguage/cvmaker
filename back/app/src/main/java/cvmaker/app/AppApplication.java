@@ -1,9 +1,6 @@
 package cvmaker.app;
 
 import cvmaker.app.multilanguage.Languages;
-import cvmaker.app.skill.GetAllSkillsDAO;
-import cvmaker.app.skill.GetAllSkillsDAOImpl;
-import cvmaker.app.skill.UserdataSkillRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

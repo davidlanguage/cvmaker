@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
+class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
 
     private final SkillRepository skillRepository;
 
@@ -18,7 +18,7 @@ public class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
     public List<Skill> getAllSkills() {
         final List<SkillEntity> skillEntities = skillRepository.findAll();
         final List<Skill> skills = new ArrayList<>();
-        skillEntities.stream().forEach(skillEntity -> skills.add(skillMapper.map(skillEntity)));
+        skillEntities.forEach(skillEntity -> skills.add(skillMapper.map(skillEntity)));
         return skills;
     }
 }
