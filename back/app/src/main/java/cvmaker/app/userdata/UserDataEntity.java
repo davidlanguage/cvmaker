@@ -20,23 +20,29 @@ import java.util.List;
 public class UserDataEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "firstname")
     private String firstname;
 
+    @Column(name= "lastname")
     private String lastname;
 
-    @Column(nullable = false)
+    @Column(name= "username", nullable = false)
     @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
     @Basic
     @Size(min = 5, max=100)
     private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "country")
     private String country;
 
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
 
