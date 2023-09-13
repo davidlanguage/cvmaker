@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
+public class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
 
     private final SkillRepository skillRepository;
 

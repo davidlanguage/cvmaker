@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/testing/")
+@RequestMapping("/skill/")
 @RequiredArgsConstructor
 public class SkillController {
 
@@ -24,7 +24,7 @@ public class SkillController {
 
     private final LoggerMapper loggerMapper;
 
-    @GetMapping("asd")
+    @GetMapping("all")
     public ResponseEntity<List<Skill>> getAllSkills(){
         createLogDAO.create(loggerMapper.map(LoggerEntity
                 .builder()
