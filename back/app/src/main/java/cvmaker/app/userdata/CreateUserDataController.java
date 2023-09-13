@@ -1,5 +1,6 @@
 package cvmaker.app.userdata;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,17 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class CreateUserDataController {
 
     private final CreateUserDataDaoImpl createUserDataDao;
 
     private final UserdataMapper userdataMapper;
 
-    @Autowired
-    public CreateUserDataController(final CreateUserDataDaoImpl createUserDataDao, final UserdataMapper userdataMapper){
-        this.createUserDataDao = createUserDataDao;
-        this.userdataMapper = userdataMapper;
-    }
     @PostMapping("/create")
     public ResponseEntity<UserData> createUserData(@RequestBody final UserData userData){
         final UserDataEntity userDataEntity = userdataMapper.mapToEntity(userData);
