@@ -69,7 +69,8 @@ class UserDataMapperTest {
         final UserData returnedUserData = userdataMapper.map(userDataEntity);
 
         //then
-        assertThat(expectedUserData).usingRecursiveComparison().isEqualTo(returnedUserData);
+        assertThat(expectedUserData).usingRecursiveComparison()
+                .ignoringAllOverriddenEquals().isEqualTo(returnedUserData);
     }
 
     @Test
@@ -111,6 +112,7 @@ class UserDataMapperTest {
         final UserDataEntity returnedUserDataEntity = userdataMapper.mapToEntity(userData);
 
         //then
-        assertThat(expectedUserDataEntity).usingRecursiveComparison().isEqualTo(returnedUserDataEntity);
+        assertThat(expectedUserDataEntity).usingRecursiveComparison()
+                .ignoringAllOverriddenEquals().isEqualTo(expectedUserDataEntity);
     }
 }

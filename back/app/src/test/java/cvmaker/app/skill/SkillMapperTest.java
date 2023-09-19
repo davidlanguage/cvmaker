@@ -44,7 +44,7 @@ class SkillMapperTest {
         final Skill returnedSkill = skillMapper.map(skillEntity);
 
         //then
-        assertThat(returnedSkill).usingRecursiveComparison().isEqualTo(expectedSkill);
+        assertThat(returnedSkill).usingRecursiveComparison().ignoringAllOverriddenEquals().isEqualTo(expectedSkill);
     }
 
     @Test
@@ -66,6 +66,7 @@ class SkillMapperTest {
         final SkillEntity returnedSkillEntity = skillMapper.mapToEntity(skill);
 
         //then
-        assertThat(returnedSkillEntity).usingRecursiveComparison().isEqualTo(returnedSkillEntity);
+        assertThat(returnedSkillEntity).usingRecursiveComparison()
+                .ignoringAllOverriddenEquals().isEqualTo(expectedSkillEntity);
     }
 }
