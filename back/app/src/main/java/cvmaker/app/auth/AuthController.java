@@ -26,7 +26,7 @@ public class AuthController {
      public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest){
          createLogDAO.create(loggerMapper.map(LoggerEntity
                  .builder()
-                 .message("The user"+loginRequest.getUsername()+" has logged in")
+                 .message("The user "+loginRequest.getUsername()+" has logged in")
                  .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
                  .build()));
          return ResponseEntity.ok(authService.login(loginRequest));

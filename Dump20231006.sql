@@ -16,6 +16,53 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `logger`
+--
+
+DROP TABLE IF EXISTS `logger`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `logger` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `message` varchar(255) DEFAULT NULL,
+  `timestamp` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logger`
+--
+
+LOCK TABLES `logger` WRITE;
+/*!40000 ALTER TABLE `logger` DISABLE KEYS */;
+INSERT INTO `logger` VALUES (252,'A user has checked all skills','2023-09-13 18:19:20.000000'),(302,'The usertesting@testing.com has logged in','2023-09-13 18:21:01.000000'),(352,'The usertesting@testing.com has logged in','2023-09-13 18:22:02.000000'),(402,'The usertesting@testing.com has logged in','2023-09-13 18:22:55.000000'),(452,'The usertesting@testing.com has logged in','2023-09-13 18:23:42.000000');
+/*!40000 ALTER TABLE `logger` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logger_seq`
+--
+
+DROP TABLE IF EXISTS `logger_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `logger_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logger_seq`
+--
+
+LOCK TABLES `logger_seq` WRITE;
+/*!40000 ALTER TABLE `logger_seq` DISABLE KEYS */;
+INSERT INTO `logger_seq` VALUES (551);
+/*!40000 ALTER TABLE `logger_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `skill`
 --
 
@@ -24,7 +71,7 @@ DROP TABLE IF EXISTS `skill`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `skill` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `skill_name` varchar(100) NOT NULL,
+  `skill_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,6 +84,61 @@ LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
 INSERT INTO `skill` VALUES (1,'Java'),(2,'HTML'),(3,'CSS'),(4,'JavaScript'),(5,'C#'),(6,'C++'),(7,'C'),(8,'Python'),(9,'Ruby');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `studies`
+--
+
+DROP TABLE IF EXISTS `studies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `studies` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `studies_title` varchar(255) DEFAULT NULL,
+  `start_date` varchar(255) DEFAULT NULL,
+  `end_date` varchar(255) DEFAULT NULL,
+  `studies_description` longtext,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `studies_user_id_fk_idx` (`user_id`),
+  CONSTRAINT `studies_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `studies`
+--
+
+LOCK TABLES `studies` WRITE;
+/*!40000 ALTER TABLE `studies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `studies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `summary`
+--
+
+DROP TABLE IF EXISTS `summary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `summary` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `summary` longtext,
+  `userdata_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userdata_id_fk_idx` (`userdata_id`),
+  CONSTRAINT `userdata_summary_fk` FOREIGN KEY (`userdata_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `summary`
+--
+
+LOCK TABLES `summary` WRITE;
+/*!40000 ALTER TABLE `summary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `summary` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -105,9 +207,12 @@ CREATE TABLE `userdata_skill` (
   `id` bigint NOT NULL,
   `userdata_id` bigint DEFAULT NULL,
   `skill_id` bigint DEFAULT NULL,
+  `skill` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userdata_id_fk_idx` (`userdata_id`),
   KEY `skill_id_fk_idx` (`skill_id`),
+  KEY `FKmhvhqvg3xkjmcymdyx7cjis6u` (`skill`),
+  CONSTRAINT `FKmhvhqvg3xkjmcymdyx7cjis6u` FOREIGN KEY (`skill`) REFERENCES `skill` (`id`),
   CONSTRAINT `skill_id_fk` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `userdata_id_fk` FOREIGN KEY (`userdata_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -121,6 +226,35 @@ LOCK TABLES `userdata_skill` WRITE;
 /*!40000 ALTER TABLE `userdata_skill` DISABLE KEYS */;
 /*!40000 ALTER TABLE `userdata_skill` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `work_experience`
+--
+
+DROP TABLE IF EXISTS `work_experience`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `work_experience` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `work_experience_title` varchar(255) DEFAULT NULL,
+  `start_date` varchar(45) DEFAULT NULL,
+  `end_date` varchar(45) DEFAULT NULL,
+  `work_experience_description` longtext,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `work_experience_user_id_fk_idx` (`user_id`),
+  CONSTRAINT `work_experience_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `work_experience`
+--
+
+LOCK TABLES `work_experience` WRITE;
+/*!40000 ALTER TABLE `work_experience` DISABLE KEYS */;
+/*!40000 ALTER TABLE `work_experience` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -131,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-13 12:05:50
+-- Dump completed on 2023-10-06  8:57:08
