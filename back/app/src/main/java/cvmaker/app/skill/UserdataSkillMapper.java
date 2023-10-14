@@ -1,7 +1,5 @@
 package cvmaker.app.skill;
 
-import cvmaker.app.userdata.UserData;
-import cvmaker.app.userdata.UserDataEntity;
 import cvmaker.app.userdata.UserdataMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,7 +9,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class UserdataSkillMapper {
+public final class UserdataSkillMapper {
 
     private SkillMapper skillMapper;
 

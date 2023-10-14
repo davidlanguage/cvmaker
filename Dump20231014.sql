@@ -27,7 +27,7 @@ CREATE TABLE `logger` (
   `message` varchar(255) DEFAULT NULL,
   `timestamp` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=603 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `logger` (
 
 LOCK TABLES `logger` WRITE;
 /*!40000 ALTER TABLE `logger` DISABLE KEYS */;
-INSERT INTO `logger` VALUES (252,'A user has checked all skills','2023-09-13 18:19:20.000000'),(302,'The usertesting@testing.com has logged in','2023-09-13 18:21:01.000000'),(352,'The usertesting@testing.com has logged in','2023-09-13 18:22:02.000000'),(402,'The usertesting@testing.com has logged in','2023-09-13 18:22:55.000000'),(452,'The usertesting@testing.com has logged in','2023-09-13 18:23:42.000000');
+INSERT INTO `logger` VALUES (252,'A user has checked all skills','2023-09-13 18:19:20.000000'),(302,'The usertesting@testing.com has logged in','2023-09-13 18:21:01.000000'),(352,'The usertesting@testing.com has logged in','2023-09-13 18:22:02.000000'),(402,'The usertesting@testing.com has logged in','2023-09-13 18:22:55.000000'),(452,'The usertesting@testing.com has logged in','2023-09-13 18:23:42.000000'),(502,'The skill Test has been added to the database','2023-10-14 20:40:29.000000'),(552,'The skill Test has been added to the database','2023-10-14 20:41:33.000000'),(553,'The skill Test has been added to the database','2023-10-14 20:42:07.000000'),(602,'The skill Test has been added to the database','2023-10-14 20:45:38.000000');
 /*!40000 ALTER TABLE `logger` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `logger_seq` (
 
 LOCK TABLES `logger_seq` WRITE;
 /*!40000 ALTER TABLE `logger_seq` DISABLE KEYS */;
-INSERT INTO `logger_seq` VALUES (551);
+INSERT INTO `logger_seq` VALUES (701);
 /*!40000 ALTER TABLE `logger_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +73,7 @@ CREATE TABLE `skill` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `skill_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'Java'),(2,'HTML'),(3,'CSS'),(4,'JavaScript'),(5,'C#'),(6,'C++'),(7,'C'),(8,'Python'),(9,'Ruby');
+INSERT INTO `skill` VALUES (1,'Java'),(2,'Kotlin'),(3,'CSS'),(4,'JavaScript'),(5,'C#'),(6,'C++'),(7,'C'),(8,'Python'),(9,'Ruby'),(10,'Test');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,9 +124,10 @@ DROP TABLE IF EXISTS `summary`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `summary` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `summary` longtext,
+  `summary` varchar(255) DEFAULT NULL,
   `userdata_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK7xyt3ih7l598jeb9awx63yv57` (`summary`),
   KEY `userdata_id_fk_idx` (`userdata_id`),
   CONSTRAINT `userdata_summary_fk` FOREIGN KEY (`userdata_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -228,6 +229,28 @@ LOCK TABLES `userdata_skill` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `userdata_skill_seq`
+--
+
+DROP TABLE IF EXISTS `userdata_skill_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `userdata_skill_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userdata_skill_seq`
+--
+
+LOCK TABLES `userdata_skill_seq` WRITE;
+/*!40000 ALTER TABLE `userdata_skill_seq` DISABLE KEYS */;
+INSERT INTO `userdata_skill_seq` VALUES (1);
+/*!40000 ALTER TABLE `userdata_skill_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `work_experience`
 --
 
@@ -265,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-06  8:57:08
+-- Dump completed on 2023-10-14 20:54:00

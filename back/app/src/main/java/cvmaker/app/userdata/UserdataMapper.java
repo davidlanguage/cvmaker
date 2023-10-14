@@ -3,7 +3,7 @@ package cvmaker.app.userdata;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserdataMapper {
+public final class UserdataMapper {
 
     public UserData map(final UserDataEntity userdataEntity){
         return UserData.builder()
