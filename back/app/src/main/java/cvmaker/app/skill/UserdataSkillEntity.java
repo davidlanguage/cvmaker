@@ -1,7 +1,6 @@
 package cvmaker.app.skill;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import cvmaker.app.userdata.UserData;
 import cvmaker.app.userdata.UserDataEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
