@@ -1,5 +1,7 @@
 package cvmaker.app.skill;
 
+import cvmaker.app.userdata.UserData;
+import cvmaker.app.userdata.UserDataEntity;
 import cvmaker.app.userdata.UserdataMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,6 +29,18 @@ public final class UserdataSkillMapper {
                 .build();
     }
 
+    UserdataSkillEntity mapToEntity(final UserdataSkill userdataSkill) {
+
+        final List<SkillEntity> skills = getSkillsToEntity(userdataSkill);
+
+        return UserdataSkillEntity
+                .builder()
+                .id(userdataSkill.getId())
+                .skillId(skills)
+                .userdataId(userdataMapper.mapToEntity(userdataSkill.getUserdataId()))
+                .build();
+    }
+
     private List<Skill> getSkills(UserdataSkillEntity userdataSkillEntity) {
         final List<Skill> skills = new ArrayList<>();
         for (SkillEntity skillEntity : userdataSkillEntity.getSkillId()) {
@@ -36,4 +50,12 @@ public final class UserdataSkillMapper {
         return skills;
     }
 
+    private List<SkillEntity> getSkillsToEntity(UserdataSkill userdataSkill) {
+        final List<SkillEntity> skills = new ArrayList<>();
+        for (Skill skillG : userdataSkill.getSkillId()) {
+            final SkillEntity skill = skillMapper.mapToEntity(skillG);
+            skills.add(skill);
+        }
+        return skills;
+    }
 }
