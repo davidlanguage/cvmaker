@@ -38,6 +38,7 @@ public class UserdataSkillController {
 
         final Optional<SkillEntity> skill = skillRepository.findById(userdataSkill.getSkillId());
 
+        //TODO: substitute this repository for a DAO
         final Optional<UserDataEntity> userData = userDataRepository.findById(userdataSkill.getUserdataId());
 
         if (skill.isEmpty() || userData.isEmpty()){

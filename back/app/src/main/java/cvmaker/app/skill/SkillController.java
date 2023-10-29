@@ -3,8 +3,6 @@ package cvmaker.app.skill;
 import cvmaker.app.logger.CreateLogDAO;
 import cvmaker.app.logger.LoggerEntity;
 import cvmaker.app.logger.LoggerMapper;
-import cvmaker.app.userdata.UserData;
-import cvmaker.app.userdata.UserDataEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @CrossOrigin
 @RestController
@@ -21,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SkillController {
 
+    //TODO: Include all XSkillDAO in a SkillService
     private final GetAllSkillsDAO getAllSkillsDAO;
 
     private final SaveSkillDAO saveSkillDAO;
@@ -31,16 +31,27 @@ public class SkillController {
 
     @GetMapping("all")
     public ResponseEntity<List<Skill>> getAllSkills(){
+
         createLogDAO.create(loggerMapper.map(LoggerEntity
                 .builder()
                 .message("A user has checked all skills")
                 .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
                 .build()));
+
         return ResponseEntity.of(Optional.ofNullable(getAllSkillsDAO.getAllSkills()));
     }
 
     @PostMapping("/create")
     public ResponseEntity<Skill> createUserData(@RequestBody final Skill skill){
+
+        final List<Skill> allSkills = getAllSkillsDAO.getAllSkills();
+
+        //TODO this logic should be in a SkillService
+        final Boolean skillAlreadyExists = allSkills.stream().anyMatch(s -> s.getSkillName().equalsIgnoreCase(skill.getSkillName()));
+
+        if(skillAlreadyExists){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         saveSkillDAO.saveSkill(skill);
 
