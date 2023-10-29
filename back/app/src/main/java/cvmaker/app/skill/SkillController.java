@@ -27,8 +27,6 @@ public class SkillController {
 
     private final CreateLogDAO createLogDAO;
 
-    private final SkillMapper skillMapper;
-
     private final LoggerMapper loggerMapper;
 
     @GetMapping("all")
@@ -43,7 +41,8 @@ public class SkillController {
 
     @PostMapping("/create")
     public ResponseEntity<Skill> createUserData(@RequestBody final Skill skill){
-        final SkillEntity skillEntity = skillMapper.mapToEntity(skill);
+
+        saveSkillDAO.saveSkill(skill);
 
         createLogDAO.create(loggerMapper.map(LoggerEntity
                 .builder()
@@ -51,7 +50,6 @@ public class SkillController {
                 .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
                 .build()));
 
-        saveSkillDAO.saveSkill(skill);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

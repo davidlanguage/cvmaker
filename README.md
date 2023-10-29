@@ -7,6 +7,7 @@ TODO:
 -- Currently  working on skills 	
 	- do unit tests missing
 	- do create userdataSkill Controller.
+		- userdataSkill Controller cannot work properly due to issues with UserdataSkill(Entity) logic -- See TODO
 
 1. New table "summary" created in database
 	- Create required classes BE
@@ -14,7 +15,7 @@ TODO:
 	- Create required classes BE
 3. New table "studies" created in database
 	- Create required classes BE
-4. Create a package for CV object which will include all the info
+4. Create a package for CV object which will include all the info for a user
 
 INFO
 

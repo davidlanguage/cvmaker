@@ -25,12 +25,9 @@ public class UserdataSkillEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(targetEntity = UserDataEntity.class)
-    @JoinColumn(name = "userdata_id", referencedColumnName = "id")
-    private UserDataEntity userdataId;
+    @Column(name ="userdata_id")
+    private Long userdataId;
 
-    @ManyToOne(targetEntity = SkillEntity.class)
-    @JsonIgnore
-    @JoinColumn(name = "skill", referencedColumnName = "id")
-    private List<SkillEntity> skillId;
+    @Column(name ="skill_id")
+    private Long skillId;
 }
