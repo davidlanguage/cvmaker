@@ -4,6 +4,7 @@ import cvmaker.app.logger.CreateLogDAO;
 import cvmaker.app.logger.LoggerEntity;
 import cvmaker.app.logger.LoggerMapper;
 import cvmaker.app.userdata.UserData;
+import cvmaker.app.userdata.UserDataEntity;
 import cvmaker.app.userdata.UserDataRepository;
 import cvmaker.app.userdata.UserdataMapper;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -33,10 +35,17 @@ public class UserdataSkillController {
     final UserDataRepository userDataRepository;
 
     final UserdataMapper userdataMapper;
-    
+
     @PostMapping("/create")
     public ResponseEntity<UserdataSkill> createUserData(@RequestBody final UserdataSkill userdataSkill) {
 
+        final Optional<SkillEntity> skill = skillRepository.findById(userdataSkill.getSkillId());
+
+        final Optional<UserDataEntity> userData = userDataRepository.findById(userdataSkill.getUserdataId());
+
+        if (skill.isEmpty() || userData.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         saveUserdataSkillDAO.addSkill(UserdataSkill
                 .builder()
