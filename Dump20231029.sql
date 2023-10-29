@@ -27,7 +27,7 @@ CREATE TABLE `logger` (
   `message` varchar(255) DEFAULT NULL,
   `timestamp` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=603 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1053 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `logger` (
 
 LOCK TABLES `logger` WRITE;
 /*!40000 ALTER TABLE `logger` DISABLE KEYS */;
-INSERT INTO `logger` VALUES (252,'A user has checked all skills','2023-09-13 18:19:20.000000'),(302,'The usertesting@testing.com has logged in','2023-09-13 18:21:01.000000'),(352,'The usertesting@testing.com has logged in','2023-09-13 18:22:02.000000'),(402,'The usertesting@testing.com has logged in','2023-09-13 18:22:55.000000'),(452,'The usertesting@testing.com has logged in','2023-09-13 18:23:42.000000'),(502,'The skill Test has been added to the database','2023-10-14 20:40:29.000000'),(552,'The skill Test has been added to the database','2023-10-14 20:41:33.000000'),(553,'The skill Test has been added to the database','2023-10-14 20:42:07.000000'),(602,'The skill Test has been added to the database','2023-10-14 20:45:38.000000');
+INSERT INTO `logger` VALUES (252,'A user has checked all skills','2023-09-13 18:19:20.000000'),(302,'The usertesting@testing.com has logged in','2023-09-13 18:21:01.000000'),(352,'The usertesting@testing.com has logged in','2023-09-13 18:22:02.000000'),(402,'The usertesting@testing.com has logged in','2023-09-13 18:22:55.000000'),(452,'The usertesting@testing.com has logged in','2023-09-13 18:23:42.000000'),(502,'The skill Test has been added to the database','2023-10-14 20:40:29.000000'),(552,'The skill Test has been added to the database','2023-10-14 20:41:33.000000'),(553,'The skill Test has been added to the database','2023-10-14 20:42:07.000000'),(602,'The skill Test has been added to the database','2023-10-14 20:45:38.000000'),(652,'The userdata skill has been added by user testing@testing.com','2023-10-15 11:14:05.000000'),(702,'The userdata skill has been added by user testing@testing.com','2023-10-15 11:14:56.000000'),(752,'The userdata skill has been added by user id null','2023-10-29 18:20:05.000000'),(753,'The userdata skill has been added by user id null','2023-10-29 18:20:29.000000'),(754,'The userdata skill has been added by user id null','2023-10-29 18:20:55.000000'),(755,'The userdata skill has been added by user id null','2023-10-29 18:21:07.000000'),(756,'The userdata skill has been added by user id null','2023-10-29 18:21:08.000000'),(802,'The userdata skill has been added by user id null','2023-10-29 18:22:27.000000'),(852,'The userdata skill has been added by user id null','2023-10-29 18:24:25.000000'),(902,'The userdata skill has been added by user id null','2023-10-29 18:25:32.000000'),(952,'The userdata skill has been added by user id 103','2023-10-29 18:26:03.000000'),(1002,'The userdata skill has been added by user id 103','2023-10-29 18:26:25.000000'),(1052,'The userdata skill has been added by user id 103','2023-10-29 18:44:20.000000');
 /*!40000 ALTER TABLE `logger` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `logger_seq` (
 
 LOCK TABLES `logger_seq` WRITE;
 /*!40000 ALTER TABLE `logger_seq` DISABLE KEYS */;
-INSERT INTO `logger_seq` VALUES (701);
+INSERT INTO `logger_seq` VALUES (1151);
 /*!40000 ALTER TABLE `logger_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,18 +205,15 @@ DROP TABLE IF EXISTS `userdata_skill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userdata_skill` (
-  `id` bigint NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `userdata_id` bigint DEFAULT NULL,
   `skill_id` bigint DEFAULT NULL,
-  `skill` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userdata_id_fk_idx` (`userdata_id`),
   KEY `skill_id_fk_idx` (`skill_id`),
-  KEY `FKmhvhqvg3xkjmcymdyx7cjis6u` (`skill`),
-  CONSTRAINT `FKmhvhqvg3xkjmcymdyx7cjis6u` FOREIGN KEY (`skill`) REFERENCES `skill` (`id`),
   CONSTRAINT `skill_id_fk` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `userdata_id_fk` FOREIGN KEY (`userdata_id`) REFERENCES `userdata` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,6 +222,7 @@ CREATE TABLE `userdata_skill` (
 
 LOCK TABLES `userdata_skill` WRITE;
 /*!40000 ALTER TABLE `userdata_skill` DISABLE KEYS */;
+INSERT INTO `userdata_skill` VALUES (6,NULL,NULL),(7,NULL,NULL),(8,NULL,NULL),(9,103,1),(10,103,1),(11,103,1);
 /*!40000 ALTER TABLE `userdata_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-14 20:54:00
+-- Dump completed on 2023-10-29 19:00:13

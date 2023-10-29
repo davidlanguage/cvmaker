@@ -3,7 +3,6 @@ package cvmaker.app.skill;
 import cvmaker.app.logger.CreateLogDAO;
 import cvmaker.app.logger.LoggerEntity;
 import cvmaker.app.logger.LoggerMapper;
-import cvmaker.app.userdata.UserData;
 import cvmaker.app.userdata.UserDataEntity;
 import cvmaker.app.userdata.UserDataRepository;
 import cvmaker.app.userdata.UserdataMapper;
@@ -21,8 +20,6 @@ import java.util.Optional;
 @RequestMapping("/userdataskill/")
 @AllArgsConstructor
 public class UserdataSkillController {
-
-    private SkillMapper skillMapper;
 
     private LoggerMapper loggerMapper;
 
