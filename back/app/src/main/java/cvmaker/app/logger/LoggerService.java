@@ -9,9 +9,9 @@ import java.util.List;
 @AllArgsConstructor
 public class LoggerService {
 
-    private SaveLogDAO saveLogDAO;
+    private final SaveLogDAO saveLogDAO;
 
-    private GetAllLogsDAO getAllLogsDAO;
+    private final GetAllLogsDAO getAllLogsDAO;
 
     public void create(final Logger logger){
         saveLogDAO.create(logger);

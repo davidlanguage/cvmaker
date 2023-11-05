@@ -12,7 +12,7 @@ public class SaveSkillDAOImpl implements SaveSkillDAO{
     private final SkillMapper skillMapper;
 
     @Override
-    public void saveSkill(Skill skill) {
+    public void saveSkill(final Skill skill) {
         skillRepository.save(skillMapper.mapToEntity(skill));
     }
 }

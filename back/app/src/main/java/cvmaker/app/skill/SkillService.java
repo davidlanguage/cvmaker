@@ -1,14 +1,24 @@
 package cvmaker.app.skill;
 
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class SkillService {
 
     private GetAllSkillsDAO getAllSkillsDAO;
     private SaveSkillDAO saveSkillDAO;
+
+    public List<Skill> getAllSkills(){
+        return getAllSkillsDAO.getAllSkills();
+    }
+
+    public void saveSkill(final Skill skill){
+        saveSkillDAO.saveSkill(skill);
+    }
 
 }
