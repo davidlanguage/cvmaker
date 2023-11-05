@@ -1,11 +1,11 @@
 package cvmaker.app.logger;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @RequiredArgsConstructor
-class CreateLogDAOImpl implements CreateLogDAO{
+class SaveLogDAOImpl implements SaveLogDAO {
 
     private final LoggerRepository repository;
 
@@ -14,8 +14,6 @@ class CreateLogDAOImpl implements CreateLogDAO{
     @Override
     public void create(final Logger logger) {
 
-        final LoggerEntity loggerEntity = mapper.mapToEntity(logger);
-
-        repository.save(loggerEntity);
+        repository.save(mapper.mapToEntity(logger));
     }
 }

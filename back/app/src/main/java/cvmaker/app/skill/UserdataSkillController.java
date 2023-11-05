@@ -1,6 +1,6 @@
 package cvmaker.app.skill;
 
-import cvmaker.app.logger.CreateLogDAO;
+import cvmaker.app.logger.SaveLogDAO;
 import cvmaker.app.logger.LoggerEntity;
 import cvmaker.app.logger.LoggerMapper;
 import cvmaker.app.userdata.UserDataEntity;
@@ -23,7 +23,7 @@ public class UserdataSkillController {
 
     private LoggerMapper loggerMapper;
 
-    private CreateLogDAO createLogDAO;
+    private SaveLogDAO saveLogDAO;
 
     private SaveUserdataSkillDAO saveUserdataSkillDAO;
 
@@ -51,7 +51,7 @@ public class UserdataSkillController {
                         .userdataId(userdataSkill.getUserdataId())
                 .build());
 
-        createLogDAO.create(loggerMapper.map(LoggerEntity
+        saveLogDAO.create(loggerMapper.map(LoggerEntity
                 .builder()
                 .message("The userdata skill has been added by user id "+userdataSkill.getUserdataId())
                 .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))

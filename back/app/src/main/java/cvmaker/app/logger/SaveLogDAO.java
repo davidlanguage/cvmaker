@@ -1,6 +1,6 @@
 package cvmaker.app.logger;
 
-public interface CreateLogDAO {
+public interface SaveLogDAO {
 
     void create(final Logger logger);
 }

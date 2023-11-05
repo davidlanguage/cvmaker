@@ -1,8 +1,7 @@
 package cvmaker.app.skill;
 
-import cvmaker.app.logger.CreateLogDAO;
-import cvmaker.app.logger.LoggerEntity;
-import cvmaker.app.logger.LoggerMapper;
+import cvmaker.app.logger.Logger;
+import cvmaker.app.logger.LoggerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 @CrossOrigin
 @RestController
@@ -25,18 +23,16 @@ public class SkillController {
 
     private final SaveSkillDAO saveSkillDAO;
 
-    private final CreateLogDAO createLogDAO;
-
-    private final LoggerMapper loggerMapper;
+    private final LoggerService loggerService;
 
     @GetMapping("all")
     public ResponseEntity<List<Skill>> getAllSkills(){
 
-        createLogDAO.create(loggerMapper.map(LoggerEntity
+        loggerService.create(Logger
                 .builder()
                 .message("A user has checked all skills")
                 .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
-                .build()));
+                .build());
 
         return ResponseEntity.of(Optional.ofNullable(getAllSkillsDAO.getAllSkills()));
     }
@@ -55,11 +51,11 @@ public class SkillController {
 
         saveSkillDAO.saveSkill(skill);
 
-        createLogDAO.create(loggerMapper.map(LoggerEntity
+        loggerService.create(Logger
                 .builder()
                 .message("The skill "+skill.getSkillName()+ " has been added to the database")
                 .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
-                .build()));
+                .build());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -1,6 +1,6 @@
 package cvmaker.app.auth;
 
-import cvmaker.app.logger.CreateLogDAO;
+import cvmaker.app.logger.SaveLogDAO;
 import cvmaker.app.logger.LoggerEntity;
 import cvmaker.app.logger.LoggerMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ public class AuthController {
 
     private final AuthService authService;
 
-    private final CreateLogDAO createLogDAO;
+    private final SaveLogDAO saveLogDAO;
 
     private final LoggerMapper loggerMapper;
 
      @PostMapping(value = "login")
      public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest){
-         createLogDAO.create(loggerMapper.map(LoggerEntity
+         saveLogDAO.create(loggerMapper.map(LoggerEntity
                  .builder()
                  .message("The user "+loginRequest.getUsername()+" has logged in")
                  .timestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
