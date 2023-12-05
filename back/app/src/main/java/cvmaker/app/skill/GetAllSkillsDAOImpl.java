@@ -15,6 +15,10 @@ public class GetAllSkillsDAOImpl implements GetAllSkillsDAO{
 
     @Override
     public List<Skill> getAllSkills() {
-        return skillRepository.findAll().stream().map(skillMapper::map).toList();
+        return skillRepository
+                .findAll()
+                .stream()
+                .map(skillMapper::map)
+                .toList();
     }
 }
