@@ -11,10 +11,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
+import static cvmaker.app.skill.SkillService.getSkillAlreadyExists;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/skill/")
 @RequiredArgsConstructor
+//TODO: Create unit test
 public class SkillController {
 
     private final SkillService skillService;
@@ -38,8 +41,7 @@ public class SkillController {
 
         final List<Skill> allSkills = skillService.getAllSkills();
 
-        //TODO this logic should be in a SkillService
-        final Boolean skillAlreadyExists = allSkills.stream().anyMatch(s -> s.getSkillName().equalsIgnoreCase(skill.getSkillName()));
+        final Boolean skillAlreadyExists = getSkillAlreadyExists(skill, allSkills);
 
         if(skillAlreadyExists){
             return ResponseEntity.badRequest().body("A skill with the name "+skill.getSkillName()+" has been already found.");
@@ -55,4 +57,6 @@ public class SkillController {
 
         return ResponseEntity.ok("Skill "+ skill.getSkillName()+" successfully created.");
     }
+
+
 }

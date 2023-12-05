@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
+//TODO: Create Unit Test
 class SaveLogDAOImpl implements SaveLogDAO {
 
     private final LoggerRepository repository;

@@ -19,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/userdataskill/")
 @AllArgsConstructor
+//TODO: Create Unit Test
 public class UserdataSkillController {
 
     private LoggerMapper loggerMapper;
@@ -34,7 +35,7 @@ public class UserdataSkillController {
     final UserdataMapper userdataMapper;
 
     @PostMapping("/create")
-    public ResponseEntity<UserdataSkill> createUserData(@RequestBody final UserdataSkill userdataSkill) {
+    public ResponseEntity<UserdataSkill> createUserDataSkill(@RequestBody final UserdataSkill userdataSkill) {
 
         //TODO: substitute this repository for a DAO
         final Optional<SkillEntity> skill = skillRepository.findById(userdataSkill.getSkillId());

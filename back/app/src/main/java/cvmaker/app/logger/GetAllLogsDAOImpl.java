@@ -7,6 +7,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+//TODO: Create Unit Test
 public class GetAllLogsDAOImpl implements  GetAllLogsDAO {
 
     private final LoggerRepository repository;

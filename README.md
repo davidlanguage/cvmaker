@@ -4,10 +4,7 @@ information and with that create a CV.
 
 TODO:
 
--- Currently  working on skills 	
-	- do unit tests missing
-	- do create userdataSkill Controller.
-		- userdataSkill Controller cannot work properly due to issues with UserdataSkill(Entity) logic -- See TODO
+
 
 1. New table "summary" created in database
 	- Create required classes BE
