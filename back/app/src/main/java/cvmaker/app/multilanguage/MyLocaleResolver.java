@@ -36,7 +36,12 @@ public class MyLocaleResolver implements LocaleResolver {
     }
 
     private String fixLanguageRequestValue(final String language){
-        return language.trim().toUpperCase();
+
+        if (language == null){
+            return null;
+        }
+
+        return !language.isEmpty()?language.trim().toUpperCase():language;
     }
 
 }
