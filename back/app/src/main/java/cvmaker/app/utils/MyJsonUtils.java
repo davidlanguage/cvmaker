@@ -2,7 +2,11 @@ package cvmaker.app.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JsonUtils {
+public final class MyJsonUtils {
+
+    private MyJsonUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static String asJsonString(final Object obj) {
         try {
