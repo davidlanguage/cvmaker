@@ -26,4 +26,9 @@ public class SkillService {
         return allSkills.stream().anyMatch(skill -> skill.getSkillName().equalsIgnoreCase(createdSkill.getSkillName()));
     }
 
+    public static Boolean skillNotTooLong(final String skill){
+
+        return skill.length()<30 && skill.length()>1;
+    }
+
 }

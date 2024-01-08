@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static cvmaker.app.skill.SkillService.getSkillAlreadyExists;
+import static cvmaker.app.skill.SkillService.skillNotTooLong;
 
 @CrossOrigin
 @RestController
@@ -46,6 +47,11 @@ public class SkillController {
         if(skillAlreadyExists){
             return ResponseEntity.badRequest().body("A skill with the name "+skill.getSkillName()+" has been already found.");
         }
+
+        if(SkillService.getSkillAlreadyExists(skill,allSkills)){
+            return ResponseEntity.badRequest().body("The skill name "+skill.getSkillName()+" is too short.");
+        }
+
 
         skillService.saveSkill(skill);
 
