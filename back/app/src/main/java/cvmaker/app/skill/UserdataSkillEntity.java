@@ -18,8 +18,6 @@ import java.util.List;
 @Table(name = "userdata_skill")
 public class UserdataSkillEntity {
 
-
-    //TODO: try to add just Long values for userdataId and skillId, so that I can add skills for a given user using the ids
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
